@@ -1,4 +1,4 @@
 *.swp
 linpack
 memsweep
-/.ipython_checkpoints
+/.ipynb_checkpoints
