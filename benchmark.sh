@@ -15,7 +15,10 @@ echo "running Benchmark and saving results to results.txt"
 apt-get update
 apt-get install -y build-essential
 
-printf "Benchmark for: " > results.txt
+printf "Date: " > results.txt
+date >> results.txt
+
+printf "Benchmark for: " >> results.txt
 hostname >> results.txt
 
 lscpu | grep '^CPU(s): ' >> results.txt
