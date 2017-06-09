@@ -1,3 +1,5 @@
+#!/bin/bash -x
+
 #RUNTIME=300
 #printf "Runtime is" $RUNTIME "seconds for linpack and memsweep each!"
 
@@ -7,12 +9,11 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
-echo "running Benchmark ans saving results to results.txt"
+echo "running Benchmark and saving results to results.txt"
 
-#if debian?
-#sudo yam update
-#sudo yam upgrade
-#sudo yam install gcc
+# prepare instance and install deps
+apt-get update
+apt-get install -y build-essential
 
 printf "Benchmark for: " > results.txt
 hostname >> results.txt
@@ -30,8 +31,4 @@ printf "\nmemsweep:\n">> results.txt
 sh memsweep.sh | grep "seconds" >> results.txt
 
 printf "\nHardware:\n" >> results.txt
-sudo lshw -short >> results.txt
-
-
-rm linpack
-rm memsweep
+lshw -short >> results.txt
