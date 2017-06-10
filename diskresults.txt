@@ -1,0 +1,5 @@
+sequential write: 400 MB/s
+sequential read (w/o cache): 526 MB/s
+sequential read (w cache): 5,5 GB/s
+random write: 212692 KB/s
+random read: 215534 KB/s
