@@ -24,8 +24,8 @@ rm $tempfile
 
 printf 'random write: '
 fio --rw=randwrite --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
-  | awk '{split($0,a,";"); print a[48] " KB/s"}'
+  | awk '{split($0,a,";"); print a[49] " IOPS"}'
 
 printf 'random read: '
 fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
-  | awk '{split($0,a,";"); print a[7] " KB/s"}'
+  | awk '{split($0,a,";"); print a[8] " IOPS"}'
