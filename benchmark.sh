@@ -12,8 +12,8 @@ fi
 echo "running Benchmark and saving results to results.txt"
 
 # prepare instance and install deps
-apt-get update
-apt-get install -y build-essential
+# apt-get update
+# apt-get install -y build-essential
 
 printf "Date: " > results.txt
 date >> results.txt
