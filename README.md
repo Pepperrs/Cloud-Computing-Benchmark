@@ -17,9 +17,9 @@ sudo apt-get update
 sudo apt-get install -y build-essential fio
 
 # or aws' linux image:
-sudo yam update
-sudo yam upgrade
-sudo yam install gcc fio
+sudo yum update
+sudo yum upgrade
+sudo yum install gcc fio
 
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
