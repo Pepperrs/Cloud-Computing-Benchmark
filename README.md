@@ -1,5 +1,51 @@
 # Cloud-Computing-Benchmark
 
+### Benchmaking cheatseet
+
+Connect to the instance via ssh and use `ForwardAgent=yes`, so that
+you can use your ssh key to push to github.
+
+``` shell
+ssh -o ForwardAgent=yes ubuntu@$host
+```
+
+Prepare the instance with some packages and our code:
+
+``` shell
+# debian/ubuntu:
+sudo apt-get update
+sudo apt-get install -y build-essential fio
+
+# or aws' linux image:
+sudo yum update
+sudo yum upgrade
+sudo yum install gcc fio
+
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+git clone git@github.com:Pepperrs/Cloud-Computing-Benchmark.git
+cd Cloud-Computing-Benchmark
+git fetch
+```
+
+Then do the following for benchmarking (remotely on openstack or aws,
+or benchmark your local system):
+
+``` shell
+# run the benchmarking scripts at least 3 times
+sudo ./benchmark.sh
+mv results.txt results16.txt
+sudo ./disk_benchmark.sh >> openstack-disk-results16.txt
+```
+
+Collect the results and push them to the repository:
+``` shell
+git add .
+git commit -a -m'adding some results, dude!'
+git push origin master
+```
+
 ## Openstack
 ### CLI Installation
 
