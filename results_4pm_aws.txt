@@ -1,0 +1,14 @@
+Date: Tue Jun 13 14:02:35 UTC 2017
+Benchmark for: ip-172-31-25-111
+CPU(s):                1
+
+IP Adress:
+52.57.9.208
+
+linpack:
+Benchmark result: 968471.721 KFLOPS
+
+memsweep:
+Memsweep time in seconds: 8.660
+
+Hardware:
