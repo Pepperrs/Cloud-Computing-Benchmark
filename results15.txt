@@ -29,3 +29,9 @@ H/W path        Device  Class      Description
 /0/100/3        ens3    network    Virtio network device
 /0/100/4                storage    Virtio block device
 /0/100/5                generic    Virtio memory balloon
+
+sequential write: 41.8 MB/s
+sequential read (w/o cache): 9.7 MB/s
+sequential read (w cache): 10.2 MB/s
+random write: 20 IOPS
+random read: 29 IOPS

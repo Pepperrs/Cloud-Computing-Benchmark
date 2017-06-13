@@ -35,3 +35,6 @@ sh memsweep.sh | grep "seconds" >> results.txt
 
 printf "\nHardware:\n" >> results.txt
 lshw -short >> results.txt
+
+printf "\nDiskbenchmark:\n" >> results.txt
+./diskbenchmark.sh >> results.txt
