@@ -2,9 +2,8 @@ Cloud Computing
 ================
 Summer Term 2017
 ----------------
-#### Project Assignment No. 1
 
-### 1.1. Student group
+### Student group
   Name: CC_GROUP_16
   Members:
   1. Peter Schuellermann |   380490
@@ -14,7 +13,7 @@ Summer Term 2017
 
 * * *
 
-### 2.1. Submission Deliverable
+###Submission Deliverable
 
 ##### 1. A screenshot showing the budget you created in Amazon AWS that notifies you when you used 70% of your yearly budget ​
 
@@ -119,18 +118,11 @@ Now we need to wait some until the instance is ready. Afterwards we can connect 
 ssh -i ~/.ssh/id_rsa ubuntu@$grp17_ip
 ```
 
-##### 4. For every benchmark mentioned above:
-  1. A description of your benchmarking methodology, including any written
-source code or scripts ​
+#### 4. Benchmarks
 
-  2. The benchmarking results for the three platforms, including
-descriptions and plots ​
+##### A. Disk benchmark
 
-  3. Answers to the questions ​
-
-###### A. Disk benchmark
-
-0. A description of your benchmarking methodology, including any written source code or scripts.
+###### 1. A description of your benchmarking methodology, including any written source code or scripts.
 
 For benchmarking the disks, we're using `dd` for sequential reads and writes and also measure with it whether there is caching or no caching. To measure random access we're using `fio`. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script, we used for measures.
 
@@ -168,36 +160,76 @@ fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format
   | awk '{split($0,a,";"); print a[8] " IOPS"}'
 ```
 
-1. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
+###### 2. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
 
-1.1 Sequential reads/writes
+2.1 Sequential reads/writes
 
 To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. There are two interesting findings in the results. The first finding is, that the performance of our local machine is much higher than the performance of the cloud providers. The second thing is, that we expected to see different results, varying in performance, for both cloud providers. That's true for openstack. The measurements in the morning were more than twice as fast compared to afternoon and midnight. aws' performance is surprisingly stable.
 
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png)
 
-1.2 Random access
+2.2 Random access
 
 For random access the results look really similar to compared to the sequential access. There is just to mention, that the differences between the types and the daytimes is even bigger.
 
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png)
 
-1.3 Cache
+2.3 Cache
 
 We also measured whether there is caching or not. The plot tells us, that the local machine and aws provide a cache, whereas openstack doesn't.
 
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/cache_reads_benchmarks.png)
 
-2. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
+###### 3. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
 
 On our local machine, we measured a solid state disk. Due to the big performance differences, aws as well as openstack have regular hard disks.
 
+##### B. CPU benchmark (​ linpack.sh​ )
 
-    ###### B. CPU benchmark (​ linpack.sh​ )
-        1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
-        2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why?
-        3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
+######  1. A description of your benchmarking methodology, including any written
+source code or scripts ​
+######  2. The benchmarking results for the three platforms, including
+descriptions and plots ​
+######  3. Answers to the questions ​
+    1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
+      On local machine. 
+      Memory required:  7824K.
+      LINPACK benchmark, Double precision.
+      Machine precision:  15 digits.
+      Array size 1000 X 1000.
+      Average rolled and unrolled performance:
+          Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+      ----------------------------------------------------
+             4   0.95  97.40%   0.63%   1.97%  723277.901
+             8   1.91  97.38%   0.64%   1.99%  716577.807
+            16   3.77  97.37%   0.64%   1.99%  725907.109
+            32   7.66  97.37%   0.64%   1.98%  714802.029
+            64  15.60  97.37%   0.65%   1.98%  701711.571
+    2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
+      Linkpack solves a dense system of linear equations and measures the floating point computing power. 
+    3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
 
-    ###### C. Memory benchmark (​ memsweep.sh​ )
-        1. Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why?
-        2. Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?
+##### C. Memory benchmark (​ memsweep.sh​ )
+
+######  1. A description of your benchmarking methodology, including any written source code or scripts ​
+  ```
+    We execueted the given memsweep script and measured memory benchmark at diffrent times of day and also took multiple readings for correctness. Though on local we didn't run it multiple time beleiving that it's resoureces are not shared with anyother users.
+  ``` 
+######  2. The benchmarking results for the three platforms, including descriptions and plots ​
+  ```
+    The bar chart shows the average access time in seconds for memory sweeping on Openstack, AWS and local machines. The array size (ARR_SIZE) for this experiment was [8096 * 4096]. 
+  ```
+  Results are somewhat different than our expectation.
+  ![alt text](https://raw.githubusercontent.com/Pepperrs/Cloud-Computing-Benchmark/memsweep.png "MemSweep")
+######  3. Answers to the questions ​
+  1. Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why?
+  ```
+    The given memsweep script measures memory access time at diffrent locations. It accesses the memory such that it hits the heap memory and then release the space. 
+    We genrally expect degraded performance on vitualized systems maybe because of two reasons. First, the memsweep (a sort of data intensive algorithem) script will result frequent context switches that leads to complete TLB flush. Second, XEN hypervisor validate write requests to ensure isolation. Though, we expect that Openstack will show a slower performance due to low specifications (488MiB Memory, Intel Core 2 Duo) than our AWS(3750 MiB SSD, Intel Xeon CPU E5-2670 v2 @ 2.50GHz). 
+  ```
+  2. Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?
+  ```
+    Yes, but we were not expecting this huge difference between Openstack and AWS where openstack is almost 8 times slower. This suggests thet physical memory on AWS is somehow very fast. On the other hand our local non virtualized machine is even faster due to better hardware specifications.
+  ```
+
+
