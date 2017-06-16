@@ -1,14 +1,28 @@
-Date: Tue Jun 13 14:02:35 UTC 2017
+Date: Fri Jun 16 14:47:48 UTC 2017
 Benchmark for: ip-172-31-25-111
 CPU(s):                1
 
 IP Adress:
-52.57.9.208
+35.157.237.133
 
 linpack:
-Benchmark result: 968471.721 KFLOPS
+Benchmark result: 975515.152 KFLOPS
 
 memsweep:
-Memsweep time in seconds: 8.660
+Memsweep time in seconds: 8.650
 
 Hardware:
+H/W path  Device  Class      Description
+========================================
+                  system     Computer
+/0                bus        Motherboard
+/0/0              memory     3750MiB System memory
+/0/1              processor  Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+/1        eth0    network    Ethernet interface
+
+Diskbenchmark:
+sequential write: 
+sequential read (w/o cache): 
+sequential read (w cache): 
+random write: 39 IOPS
+random read: 35 IOPS
