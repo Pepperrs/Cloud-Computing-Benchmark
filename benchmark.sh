@@ -38,3 +38,5 @@ lshw -short >> results.txt
 
 printf "\nDiskbenchmark:\n" >> results.txt
 ./diskbenchmark.sh >> results.txt
+#printf "\nDiskbenchmark:\n" >> results.txt
+#./diskbenchmark_aws.sh >> results.txt
