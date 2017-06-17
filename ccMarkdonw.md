@@ -11,7 +11,7 @@ Summer Term 2017
   Members:
   1. Peter Schuellermann|   380490
   2. Sebastian Schasse  |   318569
-  3. Felix Kybranz      |
+  3. Felix Kybranz      |   380341
   4. Hafiz Umar Nawaz   |   389922
 
 * * *
