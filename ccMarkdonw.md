@@ -1,4 +1,3 @@
-
 Cloud Computing
 ================
 Summer Term 2017
@@ -14,12 +13,12 @@ Summer Term 2017
   2. Sebastian Schasse  |   318569
   3. Felix Kybranz      |
   4. Hafiz Umar Nawaz   |   389922
-   
+
 * * *
 
 ### 2.1. Submission Deliverable
 
-##### 1. A screenshot showing the budget you created in Amazon AWS that notifies you when you used 70% of your yearly budget ​ 
+##### 1. A screenshot showing the budget you created in Amazon AWS that notifies you when you used 70% of your yearly budget ​
 
     Define a yearly Budget that will notify you via Email when you use more than 70% of your Amazon Educate credits.
 
@@ -30,7 +29,7 @@ Summer Term 2017
 
     # importing and generating key pair
     if [[ ! -f $HOME/KEY ]]; then
-      mkdir ~/KEY  
+      mkdir ~/KEY
     fi
 
     if [[ ! -f $HOME/KEY/CC17key.pem ]]; then
@@ -45,7 +44,7 @@ Summer Term 2017
     aws ec2 create-security-group --group-name CC17GRP16 --description "My security group"
 
     # enable ssh for security group
-    aws ec2 authorize-security-group-ingress --group-name CC17GRP16 --protocol tcp --port 22 --cidr 0.0.0.0/0 --region eu-central-1 
+    aws ec2 authorize-security-group-ingress --group-name CC17GRP16 --protocol tcp --port 22 --cidr 0.0.0.0/0 --region eu-central-1
 
     # creating an instance -check
     aws ec2 run-instances --image-id ami-f603d399 --count 1 --instance-type m3.medium --key-name CC17key --security-groups CC17GRP16 --region eu-central-1
@@ -73,12 +72,12 @@ Summer Term 2017
     #aws ec2 delete-security-group --group-name CC17GRP16 --region eu-central-1
     #aws ec2 delete-key-pair --key-name CC17key
     #rm -rf ~/KEY
-    #rm -rf ~/CCBenchmark    
+    #rm -rf ~/CCBenchmark
     #unset PubDNS InstanceIP InstanceID
     #echo"deleted everything related to your aws instance"
 ```
 
-##### 3. A commented command-line listing used to prepare and launch the virtual machine in OpenStack 
+##### 3. A commented command-line listing used to prepare and launch the virtual machine in OpenStack
 
 Create a ssh key unless you have one.
 ```
@@ -114,27 +113,113 @@ Now we need to wait some until the instance is ready. Afterwards we can connect 
 ssh -i ~/.ssh/id_rsa ubuntu@$grp17_ip
 ```
 
+###### A. Disk benchmark
+0. A description of your benchmarking methodology, including any written source code or scripts.
+
+For benchmarking the disks, we're using dd for sequential reads and writes and also measure whether there is caching or no caching. To measure random access we're using fio. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script we used for measures.
+
+```bash
+#!/bin/bash -e
+
+tempfile=$1
+
+if [[ $tempfile == '' ]]; then
+  tempfile=/tmp/benchmarking_testfile
+fi
+
+printf 'sequential write: '
+# write 1GB data and print throughput
+dd if=/dev/zero of=$tempfile bs=1M count=1024 conv=fdatasync,notrunc \
+  2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+
+printf 'sequential read (w/o cache): '
+# drop buffer caches
+echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+dd if=$tempfile of=/dev/null bs=1M count=1024 \
+  2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+printf 'sequential read (w cache): '
+dd if=$tempfile of=/dev/null bs=1M count=1024 \
+  2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+
+rm $tempfile
+
+printf 'random write: '
+fio --rw=randwrite --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+  | awk '{split($0,a,";"); print a[49] " IOPS"}'
+
+printf 'random read: '
+fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+  | awk '{split($0,a,";"); print a[8] " IOPS"}'
+```
+1. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
+To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. But what you can see on the plot is...
+![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png)
+
+Random access...
+![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png)
+
+2. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
+
 ##### 4. For every benchmark mentioned above:
   1. A description of your benchmarking methodology, including any written
-source code or scripts ​ 
+source code or scripts ​
 
   2. The benchmarking results for the three platforms, including
-descriptions and plots ​ 
+descriptions and plots ​
 
-  3. Answers to the questions ​ 
-    
+  3. Answers to the questions ​
+
     ###### A. Disk benchmark
+      0. A description of your benchmarking methodology, including any written
+source code or scripts.
+        For benchmarking the disks, we're using dd for sequential reads and writes and also measure whether there is caching or no caching. To measure random access we're using fio. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script we used for measures.
+        ```bash
+        #!/bin/bash -e
+
+        tempfile=$1
+
+        if [[ $tempfile == '' ]]; then
+          tempfile=/tmp/benchmarking_testfile
+        fi
+
+        printf 'sequential write: '
+        # write 1GB data and print throughput
+        dd if=/dev/zero of=$tempfile bs=1M count=1024 conv=fdatasync,notrunc \
+          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+
+        printf 'sequential read (w/o cache): '
+        # drop buffer caches
+        echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+        dd if=$tempfile of=/dev/null bs=1M count=1024 \
+          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+        printf 'sequential read (w cache): '
+        dd if=$tempfile of=/dev/null bs=1M count=1024 \
+          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
+
+        rm $tempfile
+
+        printf 'random write: '
+        fio --rw=randwrite --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+          | awk '{split($0,a,";"); print a[49] " IOPS"}'
+
+        printf 'random read: '
+        fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+          | awk '{split($0,a,";"); print a[8] " IOPS"}'
+        ```
       1. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
+      To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. But what you can see on the plot is...
+      ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png)
+
+      Random access...
+      ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png)
+
       2. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
 
     ###### B. CPU benchmark (​ linpack.sh​ )
         1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
-        2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
+        2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why?
         3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
 
     ###### C. Memory benchmark (​ memsweep.sh​ )
         1. Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why?
         2. Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?
-
-
-
