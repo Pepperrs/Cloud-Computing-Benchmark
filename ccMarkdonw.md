@@ -21,9 +21,14 @@ Summer Term 2017
 ##### 1. A screenshot showing the budget you created in Amazon AWS that notifies you when you used 70% of your yearly budget ​
 
     Define a yearly Budget that will notify you via Email when you use more than 70% of your Amazon Educate credits.
+
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing1.png)
+
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing2.png)
+
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing3.png)
+
+    We doesn't even used our aws credits because of the given free i/o contingent.
 
 ##### 2. A ​commented command-line listing used to prepare the Amazon EC2 instance
 
