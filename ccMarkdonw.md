@@ -113,10 +113,20 @@ Now we need to wait some until the instance is ready. Afterwards we can connect 
 ssh -i ~/.ssh/id_rsa ubuntu@$grp17_ip
 ```
 
+##### 4. For every benchmark mentioned above:
+  1. A description of your benchmarking methodology, including any written
+source code or scripts ​
+
+  2. The benchmarking results for the three platforms, including
+descriptions and plots ​
+
+  3. Answers to the questions ​
+
 ###### A. Disk benchmark
+
 0. A description of your benchmarking methodology, including any written source code or scripts.
 
-For benchmarking the disks, we're using dd for sequential reads and writes and also measure whether there is caching or no caching. To measure random access we're using fio. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script we used for measures.
+For benchmarking the disks, we're using `dd` for sequential reads and writes and also measure with it whether there is caching or no caching. To measure random access we're using `fio`. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script, we used for measures.
 
 ```bash
 #!/bin/bash -e
@@ -151,69 +161,31 @@ printf 'random read: '
 fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
   | awk '{split($0,a,";"); print a[8] " IOPS"}'
 ```
+
 1. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
-To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. But what you can see on the plot is...
+
+1.1 Sequential reads/writes
+
+To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. There are two interesting findings in the results. The first finding is, that the performance of our local machine is much higher than the performance of the cloud providers. The second thing is, that we expected to see different results, varying in performance, for both cloud providers. That's true for openstack. The measurements in the morning were more than twice as fast compared to afternoon and midnight. aws' performance is surprisingly stable.
+
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png)
 
-Random access...
+1.2 Random access
+
+For random access the results look really similar to compared to the sequential access. There is just to mention, that the differences between the types and the daytimes is even bigger.
+
 ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png)
+
+1.3 Cache
+
+We also measured whether there is caching or not. The plot tells us, that the local machine and aws provide a cache, whereas openstack doesn't.
+
+![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/cache_reads_benchmarks.png)
 
 2. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
 
-##### 4. For every benchmark mentioned above:
-  1. A description of your benchmarking methodology, including any written
-source code or scripts ​
+On our local machine, we measured a solid state disk. Due to the big performance differences, aws as well as openstack have regular hard disks.
 
-  2. The benchmarking results for the three platforms, including
-descriptions and plots ​
-
-  3. Answers to the questions ​
-
-    ###### A. Disk benchmark
-      0. A description of your benchmarking methodology, including any written
-source code or scripts.
-        For benchmarking the disks, we're using dd for sequential reads and writes and also measure whether there is caching or no caching. To measure random access we're using fio. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it's not shared with anybody else and should give the same results for all daytimes. In the following is our script we used for measures.
-        ```bash
-        #!/bin/bash -e
-
-        tempfile=$1
-
-        if [[ $tempfile == '' ]]; then
-          tempfile=/tmp/benchmarking_testfile
-        fi
-
-        printf 'sequential write: '
-        # write 1GB data and print throughput
-        dd if=/dev/zero of=$tempfile bs=1M count=1024 conv=fdatasync,notrunc \
-          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
-
-        printf 'sequential read (w/o cache): '
-        # drop buffer caches
-        echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
-        dd if=$tempfile of=/dev/null bs=1M count=1024 \
-          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
-        printf 'sequential read (w cache): '
-        dd if=$tempfile of=/dev/null bs=1M count=1024 \
-          2>&1 | tail -n 1 | awk '{split($0,a,", "); print a[4]}'
-
-        rm $tempfile
-
-        printf 'random write: '
-        fio --rw=randwrite --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
-          | awk '{split($0,a,";"); print a[49] " IOPS"}'
-
-        printf 'random read: '
-        fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
-          | awk '{split($0,a,";"); print a[8] " IOPS"}'
-        ```
-      1. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?
-      To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn't look too interesting. But what you can see on the plot is...
-      ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png)
-
-      Random access...
-      ![](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png)
-
-      2. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?
 
     ###### B. CPU benchmark (​ linpack.sh​ )
         1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
