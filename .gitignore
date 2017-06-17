@@ -2,3 +2,7 @@
 linpack
 memsweep
 test*
+<<<<<<< Updated upstream
+=======
+.ipynb_checkpoints/
+>>>>>>> Stashed changes
