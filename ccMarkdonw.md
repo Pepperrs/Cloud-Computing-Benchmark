@@ -4,15 +4,13 @@ Summer Term 2017
 ----------------
 #### Project Assignment No. 1
 
-#### Project Assignment No. 1
-
 ### 1.1. Student group
   Name: CC_GROUP_16
   Members:
-  1. Peter Schuellermann|   380490
-  2. Sebastian Schasse  |   318569
-  3. Felix Kybranz      |   380341
-  4. Hafiz Umar Nawaz   |   389922
+  1. Peter Schuellermann |   380490
+  2. Sebastian Schasse   |   318569
+  3. Felix Kybranz       |   380341
+  4. Hafiz Umar Nawaz    |   389922
 
 * * *
 
