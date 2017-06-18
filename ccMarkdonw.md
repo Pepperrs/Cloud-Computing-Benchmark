@@ -186,10 +186,14 @@ On our local machine, we measured a solid state disk. Due to the big performance
 
 ##### B. CPU benchmark (​ linpack.sh​ )
 
-######  1. A description of your benchmarking methodology, including any written
-source code or scripts ​
-######  2. The benchmarking results for the three platforms, including
-descriptions and plots ​
+######  1. A description of your benchmarking methodology, including any written source code or scripts
+  Taken differet readings. ​
+######  2. The benchmarking results for the three platforms, including descriptions and plots ​
+
+![Linpack Benchmark Result](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackresult.png "Linpack")
+
+![Linpack Benchmark Chart](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackchart.png "Linpack")
+
 ######  3. Answers to the questions ​
     1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
       On local machine. 
@@ -220,16 +224,17 @@ descriptions and plots ​
   The bar chart shows the average access time in seconds for memory sweeping on Openstack, AWS and local machines. The array size (ARR_SIZE) for this experiment was [8096 * 4096]. 
   `
   Results are somewhat different than our expectation.
+
   ![Memory Sweep Benchmark](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/memsweep.png "MemSweep")
 ######  3. Answers to the questions ​
   1. Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why?
-  `
+
   The given memsweep script measures memory access time at diffrent locations. It accesses the memory such that it hits the heap memory and then release the space. 
   We genrally expect degraded performance on vitualized systems maybe because of two reasons. First, the memsweep (a sort of data intensive algorithem) script will result frequent context switches that leads to complete TLB flush. Second, XEN hypervisor validate write requests to ensure isolation. Though, we expect that Openstack will show a slower performance due to low specifications (488MiB Memory, Intel Core 2 Duo) than our AWS(3750 MiB SSD, Intel Xeon CPU E5-2670 v2 @ 2.50GHz). 
-  `
+
   2. Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?
-  `
+
   Yes, but we were not expecting this huge difference between Openstack and AWS where openstack is almost 8 times slower. This suggests thet physical memory on AWS is somehow very fast. On the other hand our local non virtualized machine is even faster due to better hardware specifications.
-  `
+
 
 
