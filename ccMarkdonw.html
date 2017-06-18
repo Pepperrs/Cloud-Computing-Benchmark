@@ -1,0 +1,1363 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>ccMarkdonw</title></head><body><article class="markdown-body"><h1 id="cloud-computing"><a name="user-content-cloud-computing" href="#cloud-computing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Cloud Computing</h1>
+<h2 id="summer-term-2017"><a name="user-content-summer-term-2017" href="#summer-term-2017" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Summer Term 2017</h2>
+<h3 id="student-group"><a name="user-content-student-group" href="#student-group" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Student group</h3>
+<p>Name: CC_GROUP_16</p>
+<p>Members:<br />
+  1. Peter Schuellermann |   380490<br />
+  2. Sebastian Schasse   |   318569<br />
+  3. Felix Kybranz       |   380341<br />
+  4. Hafiz Umar Nawaz    |   389922</p>
+<hr />
+<h3 id="submission-deliverable"><a name="user-content-submission-deliverable" href="#submission-deliverable" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Submission Deliverable</h3>
+<h5 id="1-a-screenshot-showing-the-budget-you-created-in-amazon-aws-that-notifies-you-when-you-used-70-of-your-yearly-budget"><a name="user-content-1-a-screenshot-showing-the-budget-you-created-in-amazon-aws-that-notifies-you-when-you-used-70-of-your-yearly-budget" href="#1-a-screenshot-showing-the-budget-you-created-in-amazon-aws-that-notifies-you-when-you-used-70-of-your-yearly-budget" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1. A screenshot showing the budget you created in Amazon AWS that notifies you when you used 70% of your yearly budget ​</h5>
+<pre><code>Define a yearly Budget that will notify you via Email when you use more than 70% of your Amazon Educate credits.
+</code></pre>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing1.png" /></p>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing2.png" /></p>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/aws_billing3.png" /></p>
+<pre><code>We doesn't even used our aws credits because of the given free i/o contingent.
+</code></pre>
+<h5 id="2-a-commented-command-line-listing-used-to-prepare-the-amazon-ec2-instance"><a name="user-content-2-a-commented-command-line-listing-used-to-prepare-the-amazon-ec2-instance" href="#2-a-commented-command-line-listing-used-to-prepare-the-amazon-ec2-instance" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. A ​commented command-line listing used to prepare the Amazon EC2 instance</h5>
+<pre><code class="sh">    #!bin/bash
+
+    # importing and generating key pair
+    if [[ ! -f $HOME/KEY ]]; then
+      mkdir ~/KEY
+    fi
+
+    if [[ ! -f $HOME/KEY/CC17key.pem ]]; then
+      openssl genrsa -out $HOME/KEY/CC17key.pem 2048
+    fi
+
+    openssl rsa -in $HOME/KEY/CC17key.pem -pubout &gt; $HOME/KEY/CC17key.pub
+    sed -e '2,$!d' -e '$d' $HOME/KEY/CC17key.pub &gt;&gt; $HOME/KEY/CC17key_without_headntail.pub
+    aws ec2 import-key-pair --public-key-material file://~/KEY/CC17key_without_headntail.pub --key-name CC17key
+
+    # creating a security group
+    aws ec2 create-security-group --group-name CC17GRP16 --description &quot;My security group&quot;
+
+    # enable ssh for security group
+    aws ec2 authorize-security-group-ingress --group-name CC17GRP16 --protocol tcp --port 22 --cidr 0.0.0.0/0 --region eu-central-1
+
+    # creating an instance -check
+    aws ec2 run-instances --image-id ami-f603d399 --count 1 --instance-type m3.medium --key-name CC17key --security-groups CC17GRP16 --region eu-central-1
+
+    # getting the DNS Addr &amp; InstanceID &amp; InstanceIP
+    PubDNS=$(aws ec2 describe-instances --filters &quot;Name=instance-type,Values=m3.medium&quot; | grep PublicDnsName | awk -F'&quot;' '{ print $4}' | sort | uniq | sed 1d)
+    InstanceID=$(aws ec2 describe-instances --filters &quot;Name=instance-type,Values=m3.medium&quot; | grep InstanceId | awk -F'&quot;' '{ print $4}' | sort | uniq)
+    InstanceIP=$(aws ec2 describe-instances --filters &quot;Name=instance-type,Values=m3.medium&quot; | grep PublicIp | awk -F'&quot;' '{ print $4}' | sort | uniq)
+
+    printf &quot;\ngrab a coffee and wait for the machine $PubDNS to boot\n&quot;
+    while [[ $(bash -c &quot;(echo &gt; /dev/tcp/$PubDNS/22) 2&gt;&amp;1&quot;) ]]; do
+      echo 'still waiting...'
+      sleep 10
+    done
+
+    # transfer files for benchmarking // &lt;rsync buggy;dont know why i get permission denied&gt;
+    #git clone https://github.com/Pepperrs/Cloud-Computing-Benchmark.git ~/CCBenchmark
+    #rsync -ae ssh -i $HOME/KEY/CC17key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null --progress ~/CCBenchmark/ ec2-user@$InstanceIP:~/ -v
+
+    # connecting
+    ssh -i $HOME/KEY/CC17key.pem ec2-user@$PubDNS
+
+    # delete everything
+    #aws ec2 terminate-instances --instance-ids $InstanceID --region eu-central-1
+    #aws ec2 delete-security-group --group-name CC17GRP16 --region eu-central-1
+    #aws ec2 delete-key-pair --key-name CC17key
+    #rm -rf ~/KEY
+    #rm -rf ~/CCBenchmark
+    #unset PubDNS InstanceIP InstanceID
+    #echo&quot;deleted everything related to your aws instance&quot;
+</code></pre>
+
+<h5 id="3-a-commented-command-line-listing-used-to-prepare-and-launch-the-virtual-machine-in-openstack"><a name="user-content-3-a-commented-command-line-listing-used-to-prepare-and-launch-the-virtual-machine-in-openstack" href="#3-a-commented-command-line-listing-used-to-prepare-and-launch-the-virtual-machine-in-openstack" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. A commented command-line listing used to prepare and launch the virtual machine in OpenStack</h5>
+<p>Create a ssh key unless you have one.<br />
+<pre><code>ssh-keygen -t rsa -b 4096 -C $USER
+</code></pre><br />
+Upload your ssh key to openstack.<br />
+<pre><code>cc-openstack keypair create $USER --public-key ~/.ssh/id_rsa.pub
+</code></pre><br />
+Create a security group and allow icmp ingress as well as ingress on port 22 for a ssh connection.<br />
+<pre><code>cc-openstack security group create grp17
+cc-openstack security group rule create grp17 --description ssh-ingress \
+  --ingress --protocol tcp --dst-port 22:22
+cc-openstack security group rule create grp17 --description icmp-ingress \
+  --ingress --protocol icmp
+</code></pre><br />
+Actually create the openstack virtual machine.<br />
+<pre><code>cc-openstack server create grp17_openstackvm --image ubuntu-16.04 \
+  --flavor 'Cloud Computing' --network cc17-net --security-group grp17 \
+  --key-name $USER
+</code></pre><br />
+We need a floating ip, which is reachable from tu berlin network, and<br />
+attach it to the running instance.<br />
+<pre><code>cc-openstack floating ip create tu-internal
+grp17_ip=$(cc-openstack floating ip list -c 'Floating IP Address' -f value)
+cc-openstack server add floating ip grp17 $grp17_ip
+</code></pre><br />
+Now we need to wait some until the instance is ready. Afterwards we can connect to it via ssh.<br />
+<pre><code>ssh -i ~/.ssh/id_rsa ubuntu@$grp17_ip
+</code></pre></p>
+<h4 id="4-benchmarks"><a name="user-content-4-benchmarks" href="#4-benchmarks" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4. Benchmarks</h4>
+<h5 id="a-disk-benchmark"><a name="user-content-a-disk-benchmark" href="#a-disk-benchmark" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>A. Disk benchmark</h5>
+<h6 id="1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts"><a name="user-content-1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts" href="#1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1. A description of your benchmarking methodology, including any written source code or scripts.</h6>
+<p>For benchmarking the disks, we&rsquo;re using <code>dd</code> for sequential reads and writes and also measure with it whether there is caching or no caching. To measure random access we&rsquo;re using <code>fio</code>. We were measuring on openstack and aws in the morning, early afternoon and midnight. On our local machine, we just made 3 successive measurements, because it&rsquo;s not shared with anybody else and should give the same results for all daytimes. In the following is our script, we used for measures.</p>
+<pre><code class="bash">#!/bin/bash -e
+
+tempfile=$1
+
+if [[ $tempfile == '' ]]; then
+  tempfile=/tmp/benchmarking_testfile
+fi
+
+printf 'sequential write: '
+# write 1GB data and print throughput
+dd if=/dev/zero of=$tempfile bs=1M count=1024 conv=fdatasync,notrunc \
+  2&gt;&amp;1 | tail -n 1 | awk '{split($0,a,&quot;, &quot;); print a[4]}'
+
+printf 'sequential read (w/o cache): '
+# drop buffer caches
+echo 3 | sudo tee /proc/sys/vm/drop_caches &gt; /dev/null
+dd if=$tempfile of=/dev/null bs=1M count=1024 \
+  2&gt;&amp;1 | tail -n 1 | awk '{split($0,a,&quot;, &quot;); print a[4]}'
+printf 'sequential read (w cache): '
+dd if=$tempfile of=/dev/null bs=1M count=1024 \
+  2&gt;&amp;1 | tail -n 1 | awk '{split($0,a,&quot;, &quot;); print a[4]}'
+
+rm $tempfile
+
+printf 'random write: '
+fio --rw=randwrite --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+  | awk '{split($0,a,&quot;;&quot;); print a[49] &quot; IOPS&quot;}'
+
+printf 'random read: '
+fio --rw=randread --name=test --size=1024M --direct=1 --bs=1024k --output-format=terse \
+  | awk '{split($0,a,&quot;;&quot;); print a[8] &quot; IOPS&quot;}'
+</code></pre>
+
+<h6 id="2-look-at-the-disk-measurements-are-they-consistent-with-your-expectations-if-not-what-could-be-the-reason"><a name="user-content-2-look-at-the-disk-measurements-are-they-consistent-with-your-expectations-if-not-what-could-be-the-reason" href="#2-look-at-the-disk-measurements-are-they-consistent-with-your-expectations-if-not-what-could-be-the-reason" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. Look at the disk measurements. Are they consistent with your expectations. If not, what could be the reason?</h6>
+<p>2.1 Sequential reads/writes</p>
+<p>To compare the sequential read/write performance of the different machine types we representatively plotted the results for sequential writes. The difference of read vs. write on each machine doesn&rsquo;t look too interesting. There are two interesting findings in the results. The first finding is, that the performance of our local machine is much higher than the performance of the cloud providers. The second thing is, that we expected to see different results, varying in performance, for both cloud providers. That&rsquo;s true for openstack. The measurements in the morning were more than twice as fast compared to afternoon and midnight. aws&rsquo; performance is surprisingly stable.</p>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/sequential_writes_benchmarks.png" /></p>
+<p>2.2 Random access</p>
+<p>For random access the results look really similar to compared to the sequential access. There is just to mention, that the differences between the types and the daytimes is even bigger.</p>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/iops_writes_benchmarks.png" /></p>
+<p>2.3 Cache</p>
+<p>We also measured whether there is caching or not. The plot tells us, that the local machine and aws provide a cache, whereas openstack doesn&rsquo;t.</p>
+<p><img alt="" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/cache_reads_benchmarks.png" /></p>
+<h6 id="3-based-on-the-comparison-with-the-measurements-on-your-local-hard-drive-what-kind-of-storage-solutions-do-you-think-the-two-clouds-use"><a name="user-content-3-based-on-the-comparison-with-the-measurements-on-your-local-hard-drive-what-kind-of-storage-solutions-do-you-think-the-two-clouds-use" href="#3-based-on-the-comparison-with-the-measurements-on-your-local-hard-drive-what-kind-of-storage-solutions-do-you-think-the-two-clouds-use" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. Based on the comparison with the measurements on your local hard drive, what kind of storage solutions do you think the two clouds use?</h6>
+<p>On our local machine, we measured a solid state disk. Due to the big performance differences, aws as well as openstack have regular hard disks.</p>
+<h5 id="b-cpu-benchmark-linpacksh"><a name="user-content-b-cpu-benchmark-linpacksh" href="#b-cpu-benchmark-linpacksh" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>B. CPU benchmark (​ linpack.sh​ )</h5>
+<h6 id="1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_1"><a name="user-content-1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_1" href="#1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1. A description of your benchmarking methodology, including any written source code or scripts</h6>
+<p>We run the linpack scripts on all machines multiple times and analysed the results. Also we run the .C script to see detailed information about DGEFA and DGESL with different Array sizes. We did experiments by changing the array size for matrix in th given code so that it creates enough repetations that  we consume far more than 10 CPU cyles. We checked the diffrences of KFLOPS with incresing number of repetitions of matrix calculation with respect to implemented linear system of equations.  </p>
+<h6 id="2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots"><a name="user-content-2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots" href="#2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. The benchmarking results for the three platforms, including descriptions and plots ​</h6>
+<p>The bar chart shows the number of kilo floating-point operations per second on Openstack, AWS and local machines. The array size for this experiment was [1000].</p>
+<p><img alt="Linpack Benchmark Result" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackresult.png" title="Linpack" /></p>
+<p><img alt="Linpack Benchmark Chart" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackchart.png" title="Linpack" /></p>
+<h6 id="3-answers-to-the-questions"><a name="user-content-3-answers-to-the-questions" href="#3-answers-to-the-questions" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. Answers to the questions ​</h6>
+<ol>
+<li>Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.<br />
+  Linkpack solves a dense system of linear equations and measures the floating point computing power. <br />
+  The script generates matrices then do dot product on them then decpmpose. So the target of code is to create enough linear manipulations for CPU that we keep it busy for max time within our program execution. <br />
+    <pre><code>On local machine. 
+Memory required:  7824K.
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 1000 X 1000.
+Average rolled and unrolled performance:
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+       4   0.95  97.40%   0.63%   1.97%  723277.901
+       8   1.91  97.38%   0.64%   1.99%  716577.807
+      16   3.77  97.37%   0.64%   1.99%  725907.109
+      32   7.66  97.37%   0.64%   1.98%  714802.029
+      64  15.60  97.37%   0.65%   1.98%  701711.571
+</code></pre></li>
+<li>Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? <br />
+  According to lecture, because virtualization is a good approach for compute intensive applications so we expect that AWS and Openstack will give less FLOPS than our local non-virtualized machine. Also we expect that AWS will perform better that Openstack due to better specifiactions and more cores. </li>
+<li>Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?<br />
+  The difference between AWS and Openstack is less than our expectaions this urges us to think that openstack is using hardware virtualization and so do covers previliged instructions checks overhead. </li>
+</ol>
+<h5 id="c-memory-benchmark-memsweepsh"><a name="user-content-c-memory-benchmark-memsweepsh" href="#c-memory-benchmark-memsweepsh" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C. Memory benchmark (​ memsweep.sh​ )</h5>
+<h6 id="1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_2"><a name="user-content-1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_2" href="#1-a-description-of-your-benchmarking-methodology-including-any-written-source-code-or-scripts_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1. A description of your benchmarking methodology, including any written source code or scripts ​</h6>
+<p><code>We execueted the given memsweep script and measured memory benchmark at diffrent times of day and also took multiple readings for correctness. Though on local we didn't run it multiple time beleiving that it's resoureces are not shared with anyother users.</code></p>
+<h6 id="2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots_1"><a name="user-content-2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots_1" href="#2-the-benchmarking-results-for-the-three-platforms-including-descriptions-and-plots_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. The benchmarking results for the three platforms, including descriptions and plots ​</h6>
+<p>The bar chart shows the average access time in seconds for memory sweeping on Openstack, AWS and local machines. The array size (ARR_SIZE) for this experiment was [8096 * 4096].</p>
+<p>Results are somewhat different than our expectation.</p>
+<p><img alt="Memory Sweep Benchmark" src="https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/memsweep.png" title="MemSweep" /></p>
+<h6 id="3-answers-to-the-questions_1"><a name="user-content-3-answers-to-the-questions_1" href="#3-answers-to-the-questions_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. Answers to the questions ​</h6>
+<ol>
+<li>Find out how the memsweep benchmark works by looking at the shell script and the C code. Would you expect virtualization to affect the memsweep benchmark? Why?</li>
+</ol>
+<p>The given memsweep script measures memory access time at diffrent locations. It accesses the memory such that it hits the heap memory and then release the space. <br />
+  We genrally expect degraded performance on vitualized systems maybe because of two reasons. First, the memsweep (a sort of data intensive algorithem) script will result frequent context switches that leads to complete TLB flush. Second, XEN hypervisor validate write requests to ensure isolation. Though, we expect that Openstack will show a slower performance due to low specifications (488MiB Memory, Intel Core 2 Duo) than our AWS(3750 MiB SSD, Intel Xeon CPU E5-2670 v2 @ 2.50GHz). </p>
+<ol>
+<li>Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?</li>
+</ol>
+<p>Yes, but we were not expecting this huge difference between Openstack and AWS where openstack is almost 8 times slower. This suggests thet physical memory on AWS is somehow very fast. On the other hand our local non virtualized machine is even faster due to better hardware specifications.</p>
+<h4 id="references"><a name="user-content-references" href="#references" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>References:</h4>
+<ol>
+<li>Linpack: <a href="http://www.netlib.org/utk/papers/old.latbe/node10.html">http://www.netlib.org/utk/papers/old.latbe/node10.html</a></li>
+<li>Linpack paper: <a href="http://www.cs.yale.edu/homes/yu-minlan/teach/csci599-fall12/papers/xen.pdf">http://www.cs.yale.edu/homes/yu-minlan/teach/csci599-fall12/papers/xen.pdf</a></li>
+<li>Virtualization: Cloud Computing Slides or Lecture </li>
+</ol>
+<hr />
+<h5 id="everything-else"><a name="user-content-everything-else" href="#everything-else" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Everything Else:</h5>
+<h6 id="some-detailed-results"><a name="user-content-some-detailed-results" href="#some-detailed-results" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Some Detailed Results:</h6>
+<h4 id="aws"><a name="user-content-aws" href="#aws" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>AWS</h4>
+<pre><code>Date: Sat Jun 17 10:27:30 UTC 2017
+Benchmark for: ip-172-31-25-111
+CPU(s):                1
+
+IP Adress:
+52.57.110.245
+
+linpack:
+Benchmark result: 977292.046 KFLOPS
+
+memsweep:
+Memsweep time in seconds: 8.530
+
+Hardware:
+H/W path  Device  Class      Description
+========================================
+                  system     Computer
+/0                bus        Motherboard
+/0/0              memory     3750MiB System memory
+/0/1              processor  Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+/1        eth0    network    Ethernet interface
+
+Diskbenchmark:
+sequential write: 40.8 MB/s
+sequential read (w/o cache): 28.4 MB/s
+sequential read (w cache): 3.2 GB/s
+random write: 39 IOPS
+random read: 37 IOPS
+</code></pre>
+<h4 id="openstack"><a name="user-content-openstack" href="#openstack" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>OpenStack</h4>
+<pre><code>Date: Mon Jun 12 08:12:47 UTC 2017
+Benchmark for: grp17
+CPU(s):                1
+
+IP Adress:
+130.149.248.93
+
+linpack:
+Benchmark result: 1790709.393 KFLOPS
+
+memsweep:
+Memsweep time in seconds: 24.425
+
+Hardware:
+H/W path        Device  Class      Description
+==============================================
+                        system     Computer
+/0                      bus        Motherboard
+/0/0                    memory     488MiB System memory
+/0/1                    processor  Intel Core 2 Duo P9xxx (Penryn Class Core 2)
+/0/100                  bridge     440FX - 82441FX PMC [Natoma]
+/0/100/1                bridge     82371SB PIIX3 ISA [Natoma/Triton II]
+/0/100/1.1              storage    82371SB PIIX3 IDE [Natoma/Triton II]
+/0/100/1.2              bus        82371SB PIIX3 USB [Natoma/Triton II]
+/0/100/1.2/1    usb1    bus        UHCI Host Controller
+/0/100/1.2/1/1          input      QEMU USB Tablet
+/0/100/1.3              bridge     82371AB/EB/MB PIIX4 ACPI
+/0/100/2                display    GD 5446
+/0/100/3        ens3    network    Virtio network device
+/0/100/4                storage    Virtio block device
+/0/100/5                generic    Virtio memory balloon
+
+sequential write: 113 MB/s
+sequential read (w/o cache): 130 MB/s
+sequential read (w cache): 130 MB/s
+random write: 126 IOPS
+random read: 134 IOPS
+</code></pre>
+<h4 id="local"><a name="user-content-local" href="#local" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Local</h4>
+<pre><code>Date: Sa 17. Jun 13:36:24 CEST 2017
+Benchmark for: schasse-ThinkPad
+CPU(s):                4
+
+IP Adress:
+95.91.246.110
+
+linpack:
+Benchmark result: 2656709.289 KFLOPS
+
+memsweep:
+Memsweep time in seconds: 3.764
+
+Hardware:
+H/W path       Device           Class          Description
+==========================================================
+                                system         20F90060GE (LENOVO_MT_20F9_BU_Think_FM_ThinkPad T460s)
+/0                              bus            20F90060GE
+/0/3                            memory         64KiB L1 cache
+/0/4                            memory         64KiB L1 cache
+/0/5                            memory         512KiB L2 cache
+/0/6                            memory         3MiB L3 cache
+/0/7                            processor      Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz
+/0/8                            memory         20GiB System Memory
+/0/8/0                          memory         4GiB SODIMM DDR4 Synchronous 2133 MHz (0,5 ns)
+/0/8/1                          memory         [empty]
+/0/8/2                          memory         16GiB SODIMM DDR4 Synchronous 2133 MHz (0,5 ns)
+/0/8/3                          memory         [empty]
+/0/e                            memory         128KiB BIOS
+/0/100                          bridge         Skylake Host Bridge/DRAM Registers
+/0/100/2                        display        HD Graphics 520
+/0/100/8                        generic        Skylake Gaussian Mixture Model
+/0/100/14                       bus            Sunrise Point-LP USB 3.0 xHCI Controller
+/0/100/14/0    usb1             bus            xHCI Host Controller
+/0/100/14/0/5                   generic        EMV Smartcard Reader
+/0/100/14/0/7                   communication  Bluetooth wireless interface
+/0/100/14/0/8                   multimedia     Integrated Camera
+/0/100/14/0/9                   generic        Generic USB device
+/0/100/14/1    usb2             bus            xHCI Host Controller
+/0/100/14.2                     generic        Sunrise Point-LP Thermal subsystem
+/0/100/16                       communication  Sunrise Point-LP CSME HECI #1
+/0/100/17                       storage        Sunrise Point-LP SATA Controller [AHCI mode]
+/0/100/1c                       bridge         Intel Corporation
+/0/100/1c/0                     generic        RTS522A PCI Express Card Reader
+/0/100/1c.2                     bridge         Intel Corporation
+/0/100/1c.2/0  wlp4s0           network        Wireless 8260
+/0/100/1f                       bridge         Sunrise Point-LP LPC Controller
+/0/100/1f.2                     memory         Memory controller
+/0/100/1f.3                     multimedia     Sunrise Point-LP HD Audio
+/0/100/1f.4                     bus            Sunrise Point-LP SMBus
+/0/100/1f.6    enp0s31f6        network        Ethernet Connection I219-V
+/0/0           scsi1            storage        
+/0/0/0.0.0     /dev/sda         disk           256GB SAMSUNG MZNTY256
+/0/0/0.0.0/1   /dev/sda1        volume         511MiB Windows FAT volume
+/0/0/0.0.0/2   /dev/sda2        volume         488MiB EXT4 volume
+/0/0/0.0.0/3   /dev/sda3        volume         237GiB EFI partition
+/1                              power          00HW022
+/2                              power          01AV405
+/3             br-c0effff5c382  network        Ethernet interface
+/4             docker0          network        Ethernet interface
+/5             br-86096929758f  network        Ethernet interface
+/6             br-a4368559fa14  network        Ethernet interface
+/7             br-2f497b685b6c  network        Ethernet interface
+
+Diskbenchmark:
+sequential write: 404 MB/s
+sequential read (w/o cache): 533 MB/s
+sequential read (w cache): 5,9 GB/s
+random write: 202 IOPS
+random read: 227 IOPS
+</code></pre></article></body></html>

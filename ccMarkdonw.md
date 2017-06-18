@@ -5,6 +5,7 @@ Summer Term 2017
 
 ### Student group
   Name: CC_GROUP_16
+
   Members:
   1. Peter Schuellermann |   380490
   2. Sebastian Schasse   |   318569
@@ -187,31 +188,40 @@ On our local machine, we measured a solid state disk. Due to the big performance
 ##### B. CPU benchmark (​ linpack.sh​ )
 
 ######  1. A description of your benchmarking methodology, including any written source code or scripts
-  Taken differet readings. ​
+  We run the linpack scripts on all machines multiple times and analysed the results. Also we run the .C script to see detailed information about DGEFA and DGESL with different Array sizes. We did experiments by changing the array size for matrix in th given code so that it creates enough repetations that  we consume far more than 10 CPU cyles. We checked the diffrences of KFLOPS with incresing number of repetitions of matrix calculation with respect to implemented linear system of equations.  
 ######  2. The benchmarking results for the three platforms, including descriptions and plots ​
+  The bar chart shows the number of kilo floating-point operations per second on Openstack, AWS and local machines. The array size for this experiment was [1000].
 
 ![Linpack Benchmark Result](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackresult.png "Linpack")
 
 ![Linpack Benchmark Chart](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/linpackchart.png "Linpack")
 
 ######  3. Answers to the questions ​
-    1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
-      On local machine. 
-      Memory required:  7824K.
-      LINPACK benchmark, Double precision.
-      Machine precision:  15 digits.
-      Array size 1000 X 1000.
-      Average rolled and unrolled performance:
-          Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
-      ----------------------------------------------------
-             4   0.95  97.40%   0.63%   1.97%  723277.901
-             8   1.91  97.38%   0.64%   1.99%  716577.807
-            16   3.77  97.37%   0.64%   1.99%  725907.109
-            32   7.66  97.37%   0.64%   1.98%  714802.029
-            64  15.60  97.37%   0.65%   1.98%  701711.571
-    2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
-      Linkpack solves a dense system of linear equations and measures the floating point computing power. 
-    3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
+  1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
+  Linkpack solves a dense system of linear equations and measures the floating point computing power. 
+  The script generates matrices then do dot product on them then decpmpose. So the target of code is to create enough linear manipulations for CPU that we keep it busy for max time within our program execution. 
+
+  ```
+    On local machine. 
+    Memory required:  7824K.
+    LINPACK benchmark, Double precision.
+    Machine precision:  15 digits.
+    Array size 1000 X 1000.
+    Average rolled and unrolled performance:
+        Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+    ----------------------------------------------------
+           4   0.95  97.40%   0.63%   1.97%  723277.901
+           8   1.91  97.38%   0.64%   1.99%  716577.807
+          16   3.77  97.37%   0.64%   1.99%  725907.109
+          32   7.66  97.37%   0.64%   1.98%  714802.029
+          64  15.60  97.37%   0.65%   1.98%  701711.571
+  ```
+  
+  2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
+  According to lecture, because virtualization is a good approach for compute intensive applications so we expect that AWS and Openstack will give less FLOPS than our local non-virtualized machine. Also we expect that AWS will perform better that Openstack due to better specifiactions and more cores. 
+  
+  3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
+  The difference between AWS and Openstack is less than our expectaions this urges us to think that openstack is using hardware virtualization and so do covers previliged instructions checks overhead. 
 
 ##### C. Memory benchmark (​ memsweep.sh​ )
 
@@ -220,9 +230,9 @@ On our local machine, we measured a solid state disk. Due to the big performance
   We execueted the given memsweep script and measured memory benchmark at diffrent times of day and also took multiple readings for correctness. Though on local we didn't run it multiple time beleiving that it's resoureces are not shared with anyother users.
   `
 ######  2. The benchmarking results for the three platforms, including descriptions and plots ​
-  `
-  The bar chart shows the average access time in seconds for memory sweeping on Openstack, AWS and local machines. The array size (ARR_SIZE) for this experiment was [8096 * 4096]. 
-  `
+
+  The bar chart shows the average access time in seconds for memory sweeping on Openstack, AWS and local machines. The array size (ARR_SIZE) for this experiment was [8096 * 4096].
+
   Results are somewhat different than our expectation.
 
   ![Memory Sweep Benchmark](https://github.com/Pepperrs/Cloud-Computing-Benchmark/blob/master/memsweep.png "MemSweep")
@@ -235,6 +245,161 @@ On our local machine, we measured a solid state disk. Due to the big performance
   2. Look at your memsweep measurements. Are they consistent with your expectations. If not, what could be the reason?
 
   Yes, but we were not expecting this huge difference between Openstack and AWS where openstack is almost 8 times slower. This suggests thet physical memory on AWS is somehow very fast. On the other hand our local non virtualized machine is even faster due to better hardware specifications.
+
+
+#### References:
+
+  1. Linpack: http://www.netlib.org/utk/papers/old.latbe/node10.html
+  2. Linpack paper: http://www.cs.yale.edu/homes/yu-minlan/teach/csci599-fall12/papers/xen.pdf
+  3. Virtualization: Cloud Computing Slides or Lecture 
+
+* * *
+
+##### Everything Else:
+
+###### Some Detailed Results: 
+#### AWS
+    Date: Sat Jun 17 10:27:30 UTC 2017
+    Benchmark for: ip-172-31-25-111
+    CPU(s):                1
+
+    IP Adress:
+    52.57.110.245
+
+    linpack:
+    Benchmark result: 977292.046 KFLOPS
+
+    memsweep:
+    Memsweep time in seconds: 8.530
+
+    Hardware:
+    H/W path  Device  Class      Description
+    ========================================
+                      system     Computer
+    /0                bus        Motherboard
+    /0/0              memory     3750MiB System memory
+    /0/1              processor  Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+    /1        eth0    network    Ethernet interface
+
+    Diskbenchmark:
+    sequential write: 40.8 MB/s
+    sequential read (w/o cache): 28.4 MB/s
+    sequential read (w cache): 3.2 GB/s
+    random write: 39 IOPS
+    random read: 37 IOPS
+
+#### OpenStack
+    Date: Mon Jun 12 08:12:47 UTC 2017
+    Benchmark for: grp17
+    CPU(s):                1
+
+    IP Adress:
+    130.149.248.93
+
+    linpack:
+    Benchmark result: 1790709.393 KFLOPS
+
+    memsweep:
+    Memsweep time in seconds: 24.425
+
+    Hardware:
+    H/W path        Device  Class      Description
+    ==============================================
+                            system     Computer
+    /0                      bus        Motherboard
+    /0/0                    memory     488MiB System memory
+    /0/1                    processor  Intel Core 2 Duo P9xxx (Penryn Class Core 2)
+    /0/100                  bridge     440FX - 82441FX PMC [Natoma]
+    /0/100/1                bridge     82371SB PIIX3 ISA [Natoma/Triton II]
+    /0/100/1.1              storage    82371SB PIIX3 IDE [Natoma/Triton II]
+    /0/100/1.2              bus        82371SB PIIX3 USB [Natoma/Triton II]
+    /0/100/1.2/1    usb1    bus        UHCI Host Controller
+    /0/100/1.2/1/1          input      QEMU USB Tablet
+    /0/100/1.3              bridge     82371AB/EB/MB PIIX4 ACPI
+    /0/100/2                display    GD 5446
+    /0/100/3        ens3    network    Virtio network device
+    /0/100/4                storage    Virtio block device
+    /0/100/5                generic    Virtio memory balloon
+
+    sequential write: 113 MB/s
+    sequential read (w/o cache): 130 MB/s
+    sequential read (w cache): 130 MB/s
+    random write: 126 IOPS
+    random read: 134 IOPS
+
+#### Local 
+    Date: Sa 17. Jun 13:36:24 CEST 2017
+    Benchmark for: schasse-ThinkPad
+    CPU(s):                4
+
+    IP Adress:
+    95.91.246.110
+
+    linpack:
+    Benchmark result: 2656709.289 KFLOPS
+
+    memsweep:
+    Memsweep time in seconds: 3.764
+
+    Hardware:
+    H/W path       Device           Class          Description
+    ==========================================================
+                                    system         20F90060GE (LENOVO_MT_20F9_BU_Think_FM_ThinkPad T460s)
+    /0                              bus            20F90060GE
+    /0/3                            memory         64KiB L1 cache
+    /0/4                            memory         64KiB L1 cache
+    /0/5                            memory         512KiB L2 cache
+    /0/6                            memory         3MiB L3 cache
+    /0/7                            processor      Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz
+    /0/8                            memory         20GiB System Memory
+    /0/8/0                          memory         4GiB SODIMM DDR4 Synchronous 2133 MHz (0,5 ns)
+    /0/8/1                          memory         [empty]
+    /0/8/2                          memory         16GiB SODIMM DDR4 Synchronous 2133 MHz (0,5 ns)
+    /0/8/3                          memory         [empty]
+    /0/e                            memory         128KiB BIOS
+    /0/100                          bridge         Skylake Host Bridge/DRAM Registers
+    /0/100/2                        display        HD Graphics 520
+    /0/100/8                        generic        Skylake Gaussian Mixture Model
+    /0/100/14                       bus            Sunrise Point-LP USB 3.0 xHCI Controller
+    /0/100/14/0    usb1             bus            xHCI Host Controller
+    /0/100/14/0/5                   generic        EMV Smartcard Reader
+    /0/100/14/0/7                   communication  Bluetooth wireless interface
+    /0/100/14/0/8                   multimedia     Integrated Camera
+    /0/100/14/0/9                   generic        Generic USB device
+    /0/100/14/1    usb2             bus            xHCI Host Controller
+    /0/100/14.2                     generic        Sunrise Point-LP Thermal subsystem
+    /0/100/16                       communication  Sunrise Point-LP CSME HECI #1
+    /0/100/17                       storage        Sunrise Point-LP SATA Controller [AHCI mode]
+    /0/100/1c                       bridge         Intel Corporation
+    /0/100/1c/0                     generic        RTS522A PCI Express Card Reader
+    /0/100/1c.2                     bridge         Intel Corporation
+    /0/100/1c.2/0  wlp4s0           network        Wireless 8260
+    /0/100/1f                       bridge         Sunrise Point-LP LPC Controller
+    /0/100/1f.2                     memory         Memory controller
+    /0/100/1f.3                     multimedia     Sunrise Point-LP HD Audio
+    /0/100/1f.4                     bus            Sunrise Point-LP SMBus
+    /0/100/1f.6    enp0s31f6        network        Ethernet Connection I219-V
+    /0/0           scsi1            storage        
+    /0/0/0.0.0     /dev/sda         disk           256GB SAMSUNG MZNTY256
+    /0/0/0.0.0/1   /dev/sda1        volume         511MiB Windows FAT volume
+    /0/0/0.0.0/2   /dev/sda2        volume         488MiB EXT4 volume
+    /0/0/0.0.0/3   /dev/sda3        volume         237GiB EFI partition
+    /1                              power          00HW022
+    /2                              power          01AV405
+    /3             br-c0effff5c382  network        Ethernet interface
+    /4             docker0          network        Ethernet interface
+    /5             br-86096929758f  network        Ethernet interface
+    /6             br-a4368559fa14  network        Ethernet interface
+    /7             br-2f497b685b6c  network        Ethernet interface
+
+    Diskbenchmark:
+    sequential write: 404 MB/s
+    sequential read (w/o cache): 533 MB/s
+    sequential read (w cache): 5,9 GB/s
+    random write: 202 IOPS
+    random read: 227 IOPS
+
+
 
 
 
