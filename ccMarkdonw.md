@@ -5,7 +5,7 @@ Summer Term 2017
 
 ### Student group
   Name: CC_GROUP_16
-  
+
   Members:
   1. Peter Schuellermann |   380490
   2. Sebastian Schasse   |   318569
@@ -200,7 +200,8 @@ On our local machine, we measured a solid state disk. Due to the big performance
   1. Look at ​ linpack.sh and ​ linpack.c and shortly describe how the benchmark works.
   Linkpack solves a dense system of linear equations and measures the floating point computing power. 
   The script generates matrices then do dot product on them then decpmpose. So the target of code is to create enough linear manipulations for CPU that we keep it busy for max time within our program execution. 
-    ```
+
+  ```
     On local machine. 
     Memory required:  7824K.
     LINPACK benchmark, Double precision.
@@ -214,9 +215,11 @@ On our local machine, we measured a solid state disk. Due to the big performance
           16   3.77  97.37%   0.64%   1.99%  725907.109
           32   7.66  97.37%   0.64%   1.98%  714802.029
           64  15.60  97.37%   0.65%   1.98%  701711.571
-    ```
+  ```
+  
   2. Find out what the LINPACK benchmark measures (try Google). Would you expect paravirtualization to affect the LINPACK benchmark? Why? 
   According to lecture, because virtualization is a good approach for compute intensive applications so we expect that AWS and Openstack will give less FLOPS than our local non-virtualized machine. Also we expect that AWS will perform better that Openstack due to better specifiactions and more cores. 
+  
   3. Look at your LINPACK measurements. Are they consistent with your expectations? If not, what could be the reason?
   The difference between AWS and Openstack is less than our expectaions this urges us to think that openstack is using hardware virtualization and so do covers previliged instructions checks overhead. 
 
